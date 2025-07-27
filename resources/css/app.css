@@ -1,0 +1,180 @@
+@import "tailwindcss";
+
+@theme {
+    --color-primary: #4a8df7;
+    --bg-primary: #4a8df7;
+    --bg-primary-hover: #1e6cef;
+    --bg-danger: #dc0e15;
+    --bg-danger-hover: #ff0000;
+}
+
+.btn-primary {
+    @apply flex w-full cursor-pointer justify-center rounded-md px-3 py-3 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2;
+    background-color: theme(--bg-primary);
+}
+
+.btn-primary:hover {
+    background-color: theme(--bg-primary-hover);
+}
+
+.btn-danger {
+    @apply flex w-full cursor-pointer justify-center rounded-md px-3 py-3 text-sm/6 font-semibold text-white shadow-xs focus-visible:outline-2 focus-visible:outline-offset-2;
+    background-color: theme(--bg-danger);
+}
+
+.btn-danger:hover {
+    background-color: theme(--bg-danger-hover);
+}
+
+.btn-icon {
+    height: 50px;
+    width: 50px;
+    max-width: 50px;
+    max-height: 50px;
+    font-size: 25px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group-label {
+    @apply block text-sm/6 font-medium text-gray-900;
+}
+
+.form-group-control {
+    @apply block w-full rounded-md bg-white px-3 py-3 text-base text-gray-900 outline-1 -outline-offset-1 outline-gray-300 placeholder:text-gray-400 focus:outline-2 focus:-outline-offset-2 sm:text-sm/6;
+    height: 50px;
+    font-size: 16px;
+}
+
+.form-group-control:focus {
+    outline-color: theme(--bg-primary);
+}
+
+.form-group-select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding: 10px;
+    padding-right: 40px; /* Prostor pro šipku */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.form-group-select-wrapper {
+    position: relative;
+}
+
+.form-group-select-wrapper::after {
+    content: '▼';
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    color: #a6a5a5;
+}
+
+.form-group-control:disabled, .btn-primary:disabled {
+    background-color: #eeeeee;
+    cursor: not-allowed;
+}
+
+.required-label::after {
+    content: ' *';
+    color: red;
+    font-weight: bold;
+}
+
+.anchor-tag {
+    @apply font-semibold hover:text-indigo-500;
+    color: theme(--color-primary);
+}
+
+.anchor-tag:hover {
+    color: theme(--bg-primary-hover);
+}
+
+.public-page {
+    @apply flex min-h-[100vh] flex-col items-center justify-center px-6 py-12 lg:px-8;
+}
+
+.public-page-logo {
+    @apply sm:w-full sm:max-w-sm;
+}
+
+.public-page-content {
+    @apply mt-10 w-full max-w-sm;
+}
+
+button {
+    @apply cursor-pointer;
+}
+
+.alert-danger {
+    @apply p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50 border border-red-300 h-[50px]
+}
+
+#mobile-menu {
+    position: absolute;
+    width: 100%;
+}
+
+.router-link-active {
+    @apply bg-gray-900;
+    border-bottom: 1px solid aliceblue;
+    border-radius: 0;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.user-page {
+    @apply mx-auto max-w-7xl px-2 sm:px-6 lg:px-8;
+
+    h2 {
+        @apply text-2xl md:text-3xl;
+    }
+}
+
+.modal-content {
+    @apply min-w-[350px] sm:min-w-[450px];
+}
+
+input.dp__input {
+    height: 50px;
+}
+
+div.dp__active_date, button.dp__action_select {
+    background-color: theme(--bg-primary) !important;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    overflow-y: scroll !important;   /* Scrollovací element */
+    min-height: 100%;
+    padding-right: 0 !important;
+}
+
+body.vfm-modal-opened {
+    overflow: hidden !important;
+
+    @media (hover: hover) {
+        nav, main {
+            padding-right: 15px;
+        }
+    }
+
+    @media (hover: none) {
+        nav, main {
+            padding-right: 0;
+        }
+    }
+}
