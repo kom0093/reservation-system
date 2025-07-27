@@ -6,11 +6,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Reservation;
 use Illuminate\Http\Request;
-use App\Enums\OrderStateEnum;
 use Illuminate\Http\JsonResponse;
 use App\Http\Services\ReservationService;
 use App\Http\Resources\ReservationResource;
 use App\Http\Requests\ReservationSaveRequest;
+use App\Http\Requests\ReservationDeleteRequest;
 use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class ReservationController extends Controller
@@ -33,9 +33,9 @@ class ReservationController extends Controller
     {
         $validated = $request->validate([
             'date' => 'required|date|after_or_equal:today',
-            'person_count' => 'required|integer|min:1',
+            'person_count' => 'required|integer|min:1|max:10',
         ]);
-        
+
         $availableTimes = $this->reservationService->getAvailableTimes($validated['date'], (int) $validated['person_count']);
         return $this->success(['message' => 'success', 'available_times' => $availableTimes]);
     }
@@ -46,12 +46,8 @@ class ReservationController extends Controller
         return $this->reservationService->getResponse();
     }
 
-    public function delete(Reservation $reservation): JsonResponse
+    public function delete(ReservationDeleteRequest $request, Reservation $reservation): JsonResponse
     {
-        if ($reservation->user_id !== auth()->id()) {
-            return $this->permissionDenied();
-        }
-
         $reservation->delete();
         return $this->success();
     }

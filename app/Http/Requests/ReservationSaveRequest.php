@@ -21,7 +21,7 @@ class ReservationSaveRequest extends FormRequest
         return [
             'date' => 'required|date_format:Y-m-d',
             'time' => 'required|date_format:H:i',
-            'person_count' => 'required|integer',
+            'person_count' => 'required|integer|max:10|min:1',
         ];
     }
 

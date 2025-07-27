@@ -235,7 +235,7 @@ it('rejects deleting reservation from other user', function () {
 
     $response->assertStatus(403)
         ->assertJson([
-            'message' => 'Nemáte oprávnění k této akci.',
+            'message' => 'This action is unauthorized.',
         ]);
 });
 
